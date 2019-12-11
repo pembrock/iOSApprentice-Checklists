@@ -37,15 +37,15 @@ class ChecklistViewController: UITableViewController {
         
         let label = cell.viewWithTag(1000) as! UILabel
         
-        if indexPath.row % 5 == 0 {
+        if indexPath.row == 0 {
             label.text = row0text
-        } else if indexPath.row % 5 == 1 {
+        } else if indexPath.row  == 1 {
             label.text = row1text
-        } else if indexPath.row % 5 == 2 {
+        } else if indexPath.row == 2 {
             label.text = row2text
-        } else if indexPath.row % 5 == 3 {
+        } else if indexPath.row == 3 {
             label.text = row3text
-        } else if indexPath.row % 5 == 4 {
+        } else if indexPath.row == 4 {
             label.text = row4text
         }
         
@@ -54,7 +54,24 @@ class ChecklistViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) {
-            if cell.accessoryType == .none {
+            var isChecked = false
+            if indexPath.row == 0 {
+                row0checked = !row0checked
+                isChecked = row0checked
+            } else if indexPath.row == 1 {
+                row1checked = !row1checked
+                isChecked = row1checked
+            } else if indexPath.row == 2 {
+                row2checked = !row2checked
+                isChecked = row2checked
+            } else if indexPath.row == 3 {
+                row3checked = !row3checked
+                isChecked = row3checked
+            } else if indexPath.row == 4 {
+                row4checked = !row4checked
+                isChecked = row4checked
+            }
+            if isChecked {
                 cell.accessoryType = .checkmark
             } else {
                 cell.accessoryType = .none
