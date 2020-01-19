@@ -15,12 +15,20 @@ protocol AddItemViewControllerDelegate: class {
 
 class AddItemViewController: UITableViewController, UITextFieldDelegate {
 
+    var itemToEdit: ChecklistItem?
     weak var delegate: AddItemViewControllerDelegate?
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
+        
+        if let item = itemToEdit {
+            title = "Edit Item"
+            textField.text = item.text
+            
+        }
     }
     
     // MARK:- Actions
