@@ -23,6 +23,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         let indexPaths = [indexPath]
         tableView.insertRows(at: indexPaths, with: .automatic)
         navigationController?.popViewController(animated: true)
+        saveChecklistItems()
     }
     
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem) {
@@ -33,6 +34,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
             }
         }
         navigationController?.popViewController(animated: true)
+        saveChecklistItems()
     }
     
 
@@ -113,6 +115,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
             let item = items[indexPath.row]
             item.toggleChecked()
             configureCheckmark(for: cell, with: item)
+            saveChecklistItems()
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -122,6 +125,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         items.remove(at: indexPath.row)
         let indexPaths = [indexPath]
         tableView.deleteRows(at: indexPaths, with: .automatic)
+        saveChecklistItems()
     }
     
     func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
@@ -146,6 +150,17 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     
     func dataFilePath() -> URL {
         return documentsDirectory().appendingPathComponent("Checklists.plist")
+    }
+    
+    func saveChecklistItems() {
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(items)
+            try data.write(to: dataFilePath(),
+                           options: Data.WritingOptions.atomic)
+        } catch {
+            print("Error encoding item array: \(error.localizedDescription)")
+        }
     }
 
 }
