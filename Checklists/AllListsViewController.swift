@@ -18,6 +18,17 @@ class AllListsViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         
+        var list = Checklist(name: "Birthdays")
+        lists.append(list)
+        
+        list = Checklist(name: "Groceries")
+        lists.append(list)
+        
+        list = Checklist(name: "Cool Apps")
+        lists.append(list)
+        
+        list = Checklist(name: "To Do")
+        lists.append(list)
         
     }
 
@@ -30,7 +41,7 @@ class AllListsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return lists.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
