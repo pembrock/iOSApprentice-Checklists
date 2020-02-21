@@ -39,11 +39,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     
 
     var items = [ChecklistItem]()
-    var row0item = ChecklistItem()
-    var row1item = ChecklistItem()
-    var row2item = ChecklistItem()
-    var row3item = ChecklistItem()
-    var row4item = ChecklistItem()
+    var checklist: Checklist!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +47,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         
 //        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .never
+        title = checklist.name
         
         // Load items
         loadChecklistItems()
