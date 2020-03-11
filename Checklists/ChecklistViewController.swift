@@ -51,8 +51,8 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         
         // Load items
         loadChecklistItems()
-        print("Documents folder is \(documentsDirectory())")
-        print("Data file path is \(dataFilePath())")
+//        print("Documents folder is \(documentsDirectory())")
+//        print("Data file path is \(dataFilePath())")
     }
     
     // MARK:- Navigation
